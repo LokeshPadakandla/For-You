@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Niharika 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+html,body{width:100%;height:100%;overflow:hidden;}
+
+body{
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    color:#fff;
+}
+
+/* PAGE */
+section{
+    position:fixed;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:16px;
+    transition:.6s ease;
+}
+.hidden{
+    opacity:0;
+    transform:translateY(30px);
+    pointer-events:none;
+}
+
+/* BACK BUTTON */
+.back{
+    position:absolute;
+    top:14px;
+    left:14px;
+    padding:6px 14px;
+    font-size:.85rem;
+    background:rgba(255,255,255,.25);
+    border-radius:20px;
+    cursor:pointer;
+}
+
+/* IMAGE */
+img{
+    width:70vw;
+    max-width:240px;
+    aspect-ratio:2/3;
+    object-fit:cover;
+    border-radius:18px;
+    margin-bottom:16px;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+}
+
+/* TEXT */
+h1{font-family:'Dancing Script',cursive;font-size:clamp(2.2rem,6vw,3rem);}
+p{max-width:90vw;font-size:.95rem;margin-top:8px;line-height:1.5;}
+
+/* BUTTONS */
+button{
+    margin-top:20px;
+    padding:14px 24px;
+    border:none;
+    border-radius:28px;
+    background:#fff;
+    color:#ff4f81;
+    font-size:1rem;
+    cursor:pointer;
+}
+button:active{transform:scale(.95);}
+
+/* CHOICE */
+.choice-box{display:flex;gap:14px;margin-top:24px;flex-wrap:wrap;justify-content:center;}
+.no{background:transparent;border:2px solid #fff;color:#fff;}
+
+/* HEART */
+.heart{font-size:2.4rem;animation:beat 1.5s infinite;}
+@keyframes beat{0%,100%{transform:scale(1);}50%{transform:scale(1.25);}}
+
+/* GLOW */
+@keyframes pulseGlow{
+    0%{box-shadow:0 0 0 rgba(255,255,255,.6);}
+    50%{box-shadow:0 0 18px rgba(255,255,255,.9);}
+    100%{box-shadow:0 0 0 rgba(255,255,255,.6);}
+}
+.glow{animation:pulseGlow 1.6s infinite;}
+
+/* FLOATING HEARTS */
+.love{
+    position:fixed;
+    bottom:-30px;
+    font-size:1.4rem;
+    animation:floatUpSlow 10s linear infinite;
+    pointer-events:none;
+    z-index:9999;
+}
+@keyframes floatUpSlow{
+    0%{opacity:0;transform:translateY(0) scale(.9);}
+    10%{opacity:1;}
+    100%{opacity:0;transform:translateY(-120vh) scale(1.3);}
+}
+
+/* MUSIC OVERLAY */
+#musicOverlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:10000;
+}
+#musicOverlay .box{
+    background:rgba(255,255,255,.18);
+    backdrop-filter:blur(10px);
+    padding:24px 28px;
+    border-radius:18px;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+    <source src="m1.mpeg" type="audio/mpeg">
+</audio>
+
+<div id="musicOverlay">
+    <div class="box">
+        <p data-text="">Music on chesi choodu? 🎧</p>
+        <button onclick="startMusic()">Okay 🤍</button>
+    </div>
+</div>
+
+<!-- PAGE 1 -->
+<section id="p1">
+    <img src="p1.jpeg">
+    <h1 data-text="Hi Niharika ❤️"></h1>
+    <p data-text="Nee smile choosthe normal day kuda special Day ayipothundi...."></p>
+    <button onclick="go('p1','p2')">Ekkada Click Chey 👀</button>
+</section>
+
+<!-- PAGE 2 -->
+<section id="p2" class="hidden">
+    <div class="back" onclick="go('p2','p1')">⬅ Previous</div>
+    <h1 data-text="One small thing 🤍"></h1>
+    <p data-text="Next Page velladaniki Genuine gaa Neeku Interest Undho Ledho Select Chesko 🙂 (Oka saari Not Interested select cheyyi)"></p>
+
+    <div class="choice-box">
+        <button id="yesBtn" onclick="showLoveAndGo()">Interested 😊</button>
+        <button id="noBtn" class="no" onclick="escapeNo()">Not Interested 🙂</button>
+    </div>
+
+    <p id="responseText"></p>
+</section>
+
+<!-- PAGE 3 -->
+<section id="p3" class="hidden">
+    <div class="back" onclick="go('p3','p2')">⬅ Previous</div>
+    <img src="p2.jpeg">
+    <h1 data-text="Happy Birthday Niharika ❤️🎂"></h1>
+    <p data-text="Feb 14 world ki Valentine’s Day… naaku matram nee Birthday aney gurthundhi ✨"></p>
+    <button onclick="go('p3','p4')">Next One 🙂</button>
+</section>
+
+<!-- PAGE 4 -->
+<section id="p4" class="hidden">
+    <div class="back" onclick="go('p4','p3')">⬅ Back</div>
+    <img src="p3.jpeg">
+    <p data-text="Niharika… Neetho maatladinappudu nee navvu choosinappudu konni alochanalu manasulo silent gaa place teesukunnayi....."></p>
+    <button onclick="go('p4','p5')">Next 💭</button>
+</section>
+
+<!-- PAGE 5 -->
+<section id="p5" class="hidden">
+    <div class="back" onclick="go('p5','p4')">⬅ Previous</div>
+    <img src="p4.jpeg">
+    <p data-text="Niharika… nenu ninnu yeppudu junior laa choodaledhu…"></p>
+    <p data-text="Oka special person laage anukunna… eppatiki kuda same feeling."></p>
+    <button onclick="go('p5','p6')">Next 💌</button>
+</section>
+
+<!-- PAGE 6 -->
+<section id="p6" class="hidden">
+    <div class="back" onclick="go('p6','p5')">⬅ Previous</div>
+    <img src="p5.jpeg">
+    <p data-text="Naa manasulo nee place konchem special ayipoyindi...."></p>
+    <p data-text="Future lo alaa… nee life lo oka place undaali ani anukuntunna…"></p>
+    <p data-text="Adi kuda neeku nachithe maathrame... 🤍"></p>
+    <button onclick="go('p6','p7')">Last 🤍</button>
+</section>
+
+<!-- PAGE 7 -->
+<section id="p7" class="hidden">
+    <div class="back" onclick="go('p7','p6')">⬅ Previous</div>
+    <img src="p6.jpeg">
+    <h1 class="heart">❤️</h1>
+    <p data-text="Niharika... Past lo naa words valla ledhaa naa behaviour valla ninnu hurt chesi unte…"></p>
+    <p data-text="I’m really sorry. That was never my intention 🌷"></p>
+    <p data-text="Ee birthday nunchi nee smile inkonchem ekkuva avvali ani"></p>
+    <p data-text="Sincere wishes 💫 From My Heart 🤍"></p>
+    <p data-text="Love You 🤍"></p>
+</section>
+
+<script>
+/* PAGE SWITCH */
+function go(a,b){
+    document.getElementById(a).classList.add("hidden");
+    document.getElementById(b).classList.remove("hidden");
+    setTimeout(()=>typePage(b),200);
+}
+
+/* MUSIC */
+function startMusic(){
+    const m=document.getElementById("bgMusic");
+    m.volume=0;
+    m.play().catch(()=>{});
+    let v=0;
+    const fade=setInterval(()=>{
+        v+=0.05;
+        m.volume=v;
+        if(v>=0.4) clearInterval(fade);
+    },200);
+    document.getElementById("musicOverlay").style.display="none";
+}
+
+/* PAGE 2 LOGIC */
+let noCount=0;
+function escapeNo(){
+    noCount++;
+    noBtn.style.transform=`scale(${1-noCount*0.15})`;
+    yesBtn.style.transform=`scale(${1+noCount*0.12})`;
+    yesBtn.classList.add("glow");
+    responseText.innerText=["🙂 okay…","Just think once 🤍","Hmm… almost 👀"][Math.min(noCount-1,2)];
+}
+
+function showLoveAndGo(){
+    setInterval(()=>{
+        const h=document.createElement("div");
+        h.className="love";
+        h.innerText="❤️";
+        h.style.left=Math.random()*100+"vw";
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),12000);
+    },600);
+
+    setTimeout(()=>go('p2','p3'),800);
+}
+
+/* TYPING EFFECT */
+function typeText(el, callback){
+    const txt = el.getAttribute("data-text");
+    if(!txt) return;
+
+    el.innerHTML = "";
+    let i = 0;
+
+    const baseSpeed = el.tagName === "H1" ? 200 : 100;
+
+    function type(){
+        el.innerHTML += txt.charAt(i);
+
+        let delay = baseSpeed;
+
+        // natural pause on punctuation
+        if (".,!?…".includes(txt.charAt(i))) delay = baseSpeed + 100;
+
+        i++;
+        if(i < txt.length){
+            setTimeout(type, delay);
+        }else{
+            // small pause after line completes
+            setTimeout(()=>callback && callback(), 300);
+        }
+    }
+    type();
+}
+
+function typePage(id){
+    const els = Array.from(
+        document.getElementById(id).querySelectorAll("[data-text]")
+    );
+
+    let index = 0;
+
+    function next(){
+        if(index < els.length){
+            typeText(els[index], next);
+            index++;
+        }
+    }
+    next();
+}
+
+/* FIRST LOAD */
+window.onload = () => typePage("p1");
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
